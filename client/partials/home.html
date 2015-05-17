@@ -1,0 +1,36 @@
+<div ng-controller='docsController'>
+
+<h1>Doctor's Appointments</h1>
+
+Search <input type='text' ng-model='filter_name'><br><br>
+
+<table class='table'>
+	<thead>
+		<th>Date</th>
+		<th>Time</th>
+		<th>Patient Name</th>
+		<th>Complain</th>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Oct 7, 2014</td>
+			<td>8:00 AM</td>
+			<td>Derrick Liang</td>
+			<td>Too sexy for my shirt</td>
+		</tr>
+		<tr ng-repeat="appointment in appointments | filter:filter_name | orderBy: 'date'">
+			<td>{{appointment.date | date: 'longDate'}}</td>
+			<td>{{appointment.time}}</td>
+			<td>{{appointment.patient}}</td>
+			<td>{{appointment.complain}}</td>
+			<td>
+				<a ng-click='deleteAppointment(appointment)'>
+					<button ng-show='{{appointment.isYou}}'>CANCEL</button>
+				</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<a href="#/new_appointment">Add a new appointment</a>
+</div>
